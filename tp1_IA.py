@@ -22,8 +22,6 @@ def parseAlgorithm(algorithm: str) -> list:
     #elif algorithm == 'I':
     #    return iterativeDeepeningSearch(puzzle)
 
-
-
 def printSolution(solution: list) -> None:
     if printSteps:
         print(len(solution)) 
@@ -43,16 +41,13 @@ algorithm = ""
 board = []
 printSteps = False
 
-if len(input) != 11 and len(input) != 12:
-    print("Invalid input")
-    exit()
-if input[0] != "TP1" or input[1] not in ["B", "I", "U", "A", "G", "H"] or (len(input) == 12 and input[-1] != "PRINT") or (len(input) == 11 and input[-1] == "PRINT"):
+if (len(input) != 11 and len(input) != 12) or input[0] != "TP1" or input[1] not in ["B", "I", "U", "A", "G", "H"] or (len(input) == 12 and input[-1] != "PRINT") or (len(input) == 11 and input[-1] == "PRINT"):
     print("Invalid input")
     exit()
 numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8"}
 for i in range(2, 11): 
     if input[i] not in numbers: 
-        print("Invalid input"); 
+        print("Invalid puzzle"); 
         exit()
     else:
         numbers.remove(input[i])
@@ -61,8 +56,7 @@ algorithm = input[1]
 if input[-1] == "PRINT":
     board = input[2:-1]
     printSteps = True
-elif len(input) == 11:
-    board = input[2:]
+else: board = input[2:]
 
 
 puzzleGrid = np.zeros((3, 3), dtype=int)
