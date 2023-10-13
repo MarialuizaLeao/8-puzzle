@@ -5,6 +5,9 @@ from eightPuzzle import eightPuzzle
 from bfs import breadthFirstSearch
 from ids import iterativeDeepeningSearch
 from ucs import uniformCostSearch
+from aStar import aStar
+from gready import gready
+from hillClimbing import hillClimbing
 
 solution = []
 
@@ -15,12 +18,12 @@ def parseAlgorithm(algorithm: str) -> list:
         return iterativeDeepeningSearch(puzzle)
     elif algorithm == 'U':
         return uniformCostSearch(puzzle)
-    #elif algorithm == 'I':
-    #    return iterativeDeepeningSearch(puzzle)
-    #elif algorithm == 'I':
-    #    return iterativeDeepeningSearch(puzzle)
-    #elif algorithm == 'I':
-    #    return iterativeDeepeningSearch(puzzle)
+    elif algorithm == 'A':
+        return aStar(puzzle)
+    elif algorithm == 'G':
+        return gready(puzzle)
+    elif algorithm == 'H':
+        return hillClimbing(puzzle)
 
 def printSolution(solution: list) -> None:
     if printSteps:
