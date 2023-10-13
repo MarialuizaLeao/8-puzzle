@@ -1,5 +1,6 @@
-import numpy as np
 import copy
+
+import timeit
 
 from eightPuzzle import eightPuzzle
 from bfs import breadthFirstSearch
@@ -7,7 +8,7 @@ from ids import iterativeDeepeningSearch
 from ucs import uniformCostSearch
 from aStar import aStar
 from gready import gready
-from hillClimbing import hillClimbing
+#from hillClimbing import hillClimbing
 
 solution = []
 
@@ -22,10 +23,11 @@ def parseAlgorithm(algorithm: str) -> list:
         return aStar(puzzle)
     elif algorithm == 'G':
         return gready(puzzle)
-    elif algorithm == 'H':
-        return hillClimbing(puzzle)
+#    elif algorithm == 'H':
+#        return hillClimbing(puzzle)
 
 def printSolution(solution: list) -> None:
+    sol = []
     if printSteps:
         print(len(solution)) 
         print()
@@ -38,6 +40,8 @@ def printSolution(solution: list) -> None:
         for i in range(len(solution)):
             puzzle.move(solution[i])
         puzzle.printGrid()
+        
+start = timeit.default_timer()
 
 input = input().split()
 algorithm = ""
@@ -62,7 +66,7 @@ if input[-1] == "PRINT":
 else: board = input[2:]
 
 
-puzzleGrid = np.zeros((3, 3), dtype=int)
+puzzleGrid = [[0 for x in range(3)] for y in range(3)]
 
 for i in range(3):
     for j in range(3):
@@ -73,3 +77,6 @@ solution = parseAlgorithm(algorithm)
 if solution == ["failure"]:
     print("No solution found")
 else: printSolution(solution)
+
+stop = timeit.default_timer()
+print('Time: ', stop - start)

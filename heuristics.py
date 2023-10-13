@@ -1,15 +1,22 @@
 # heuristics.py
 
-import numpy as np
 import heapq
 import copy
 
 from eightPuzzle import eightPuzzle
 
-def manhattanDistance(grid: np.array) -> int:
-    right = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])       
-    return  np.sum(abs(grid % right - grid // right))
+def manhattanDistance(grid: list) -> int:
+    right = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    sum = 0
+    for i in range(3):
+        for j in range(3):
+            sum += abs(grid[i][j] % right[i][j] - grid[i][j] // right[i][j])
+    return  sum
 
-def misplacedTiles(grid: np.array) -> int:
-    right = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
-    return 0 if (np.sum(np.sum((y == False for y in (grid == right)))) - 1) < 0 else np.sum(np.sum((y == False for y in (grid == right)))) - 1
+def misplacedTiles(grid: list) -> int:
+    right = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+    sum = 0
+    for i in range(3):
+        for j in range(3):
+            if grid[i][j] != right[i][j] and grid[i][j] != 0: sum += 1
+    return sum

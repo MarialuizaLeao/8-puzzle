@@ -1,11 +1,10 @@
 # eightPuzzle.py
 
-import numpy as np
 import copy
 
 class eightPuzzle:
 
-    def __init__(self, grid: np.array):
+    def __init__(self, grid: list):
         self.grid = grid
         self.emptySpace = self.findEmptySpace()
         
@@ -17,7 +16,7 @@ class eightPuzzle:
         return (0,0)
     
     def solved(self) -> bool:
-        return np.array_equal(self.grid, np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]]))
+        return self.grid == [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
     def up(self) -> None:
         if(self.validMove('up')): # If the empty space is not in the first row
