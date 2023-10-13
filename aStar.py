@@ -7,30 +7,29 @@ from eightPuzzle import eightPuzzle
 from heuristics import manhattanDistance, misplacedTiles
 from node import Node
 
-def costCalcManhattanDistance(grid: list, realCost: int) -> int:
+def func1(grid: list, realCost: int) -> int:
     return realCost + manhattanDistance(grid)
 
-def costCalcMisplacedTiles(grid: list, realCost: int) -> int:
+def func2(grid: list, realCost: int) -> int:
     return realCost + misplacedTiles(grid)
 
         
 def aStar(puzzle: eightPuzzle) -> list:
-    root = Node(puzzle.grid)
+    root = Node(puzzle.grid, func1)
     open = []
     heapq.heapify(open)
     heapq.heappush(open, root)
     closed = set()
     parent = dict()
     
-    while len(open) != 0:
+    while open:
         current = heapq.heappop(open)
         if current.puzzle.solved(): return current.solution
-        closed.append(current)
+        closed.add(current)
         for child in current.nodeChildren():
-            if parent.get(str(child.puzzle.grid)) == None:
+            if child not in parent:
                 parent[child] = current
                 heapq.heappush(open, child)
-            elif len(child.solution) < len(parent[str(child.puzzle.grid)]):
-                parent[str(child.puzzle.grid)] = current
-                open.remove(child)
+            elif len(current.solution) < len(parent[child].solution):
+                parent[child] = current
                 heapq.heappush(open, child)
