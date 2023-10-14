@@ -16,7 +16,7 @@ class eightPuzzle:
         return (0,0)
     
     def solved(self) -> bool:
-        return self.grid == [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+        return (self.grid == [[1, 2, 3], [4, 5, 6], [7, 8, 0]])
 
     def up(self) -> None:
         if(self.validMove('up')): # If the empty space is not in the first row

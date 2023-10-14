@@ -8,7 +8,7 @@ from ids import iterativeDeepeningSearch
 from ucs import uniformCostSearch
 from aStar import aStar
 from gready import gready
-#from hillClimbing import hillClimbing
+from hillClimbing import hillClimbing
 
 solution = []
 
@@ -23,8 +23,8 @@ def parseAlgorithm(algorithm: str) -> list:
         return aStar(puzzle)
     elif algorithm == 'G':
         return gready(puzzle)
-#    elif algorithm == 'H':
-#        return hillClimbing(puzzle)
+    elif algorithm == 'H':
+        return hillClimbing(puzzle)
 
 def printSolution(solution: list) -> None:
     sol = []
