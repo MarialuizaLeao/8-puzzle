@@ -1,10 +1,9 @@
-# node.py
+# node
 
 import heapq
 import copy
 
 from eightPuzzle import eightPuzzle
-from heuristics import manhattanDistance, misplacedTiles
 
 class Node:
         
@@ -32,7 +31,7 @@ class Node:
         
         def __lt__(self, other): return self.cost < other.cost
         
-        def __le__(self, other): return self.cost <= other.cost
+        def __le__(self, other): self.cost <= other.cost
         
         def __gt__(self, other): return self.cost > other.cost
         
