@@ -33,7 +33,7 @@ def depthLimitedSearch(puzzle: eightPuzzle, limit: int) -> (list, list):
             
 def iterativeDeepeningSearch(puzzle: eightPuzzle) -> (list,list):
     i = 0
-    limit = 10
+    limit = 30
     while(True):
         if i > limit: return ["failure"]
         solution = depthLimitedSearch(puzzle, i)
