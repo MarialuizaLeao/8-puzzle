@@ -1,4 +1,4 @@
-# gready.py
+# greedy.py
 
 import heapq
 import copy
@@ -13,7 +13,7 @@ def func1(grid: list, realCost: int) -> int:
 def func2(grid: list, realCost: int) -> int:
     return misplacedTiles(grid)
         
-def gready(puzzle: eightPuzzle) -> (list, list):
+def greedy(puzzle: eightPuzzle) -> (list, list):
     frontier = []
     heapq.heapify(frontier)
     root = Node(puzzle.grid, func1)

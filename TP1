@@ -5,7 +5,7 @@ from bfs import breadthFirstSearch
 from ids import iterativeDeepeningSearch
 from ucs import uniformCostSearch
 from aStar import aStar
-from gready import gready
+from greedy import greedy
 from hillClimbing import hillClimbing
 
 solution = []
@@ -20,7 +20,7 @@ def parseAlgorithm(algorithm: str) -> list:
     elif algorithm == 'A':
         return aStar(puzzle)
     elif algorithm == 'G':
-        return gready(puzzle)
+        return greedy(puzzle)
     elif algorithm == 'H':
         return hillClimbing(puzzle)
 
