@@ -21,13 +21,9 @@ def aStar(puzzle: eightPuzzle) -> (list, list):
     heapq.heappush(open, root)
     closed = set()
     parent = dict()
-    history = []
-    i = 0
     while open:
         current = heapq.heappop(open)
-        history.append((misplacedTiles(current.puzzle.grid), i))
-        i+=1
-        if current.puzzle.solved(): return current.solution, history
+        if current.puzzle.solved(): return current.solution
         closed.add(current)
         for child in current.nodeChildren():
             if child not in parent:
@@ -36,4 +32,4 @@ def aStar(puzzle: eightPuzzle) -> (list, list):
             elif len(current.solution) < len(parent[child].solution):
                 parent[child] = current
                 heapq.heappush(open, child)
-    return ["failure"], history
+    return ["failure"]

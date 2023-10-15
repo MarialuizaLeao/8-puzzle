@@ -1,7 +1,5 @@
 import copy
 
-import timeit
-
 from eightPuzzle import eightPuzzle
 from bfs import breadthFirstSearch
 from ids import iterativeDeepeningSearch
@@ -40,30 +38,28 @@ def printSolution(solution: list) -> None:
         for i in range(len(solution)):
             puzzle.move(solution[i])
         puzzle.printGrid()
-        
-start = timeit.default_timer()
 
 input = input().split()
 algorithm = ""
 board = []
 printSteps = False
 
-if (len(input) != 11 and len(input) != 12) or input[0] != "TP1" or input[1] not in ["B", "I", "U", "A", "G", "H"] or (len(input) == 12 and input[-1] != "PRINT") or (len(input) == 11 and input[-1] == "PRINT"):
+if (len(input) != 10 and len(input) != 11) or input[0] not in ["B", "I", "U", "A", "G", "H"] or (len(input) == 11 and input[-1] != "PRINT") or (len(input) == 10 and input[-1] == "PRINT"):
     print("Invalid input")
     exit()
 numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8"}
-for i in range(2, 11): 
+for i in range(1, 10): 
     if input[i] not in numbers: 
         print("Invalid puzzle"); 
         exit()
     else:
         numbers.remove(input[i])
         
-algorithm = input[1]
+algorithm = input[0]
 if input[-1] == "PRINT":
-    board = input[2:-1]
+    board = input[1:-1]
     printSteps = True
-else: board = input[2:]
+else: board = input[1:]
 
 
 puzzleGrid = [[0 for x in range(3)] for y in range(3)]
@@ -77,6 +73,3 @@ solution = parseAlgorithm(algorithm)
 if solution == ["failure"]:
     print("No solution found")
 else: printSolution(solution)
-
-stop = timeit.default_timer()
-print('Time: ', stop - start)

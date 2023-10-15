@@ -17,17 +17,13 @@ def uniformCostSearch(puzzle: eightPuzzle) -> (list, list):
     heapq.heapify(frontier)
     heapq.heappush(frontier, root)
     parent = dict()
-    history = []
-    i = 0
     while frontier:
         node = heapq.heappop(frontier)
-        history.append((misplacedTiles(node.puzzle.grid), i))
-        i+=1
-        if node.puzzle.solved(): return node.solution, history
+        if node.puzzle.solved(): return node.solution
         for child in node.nodeChildren():
             if child not in parent or (child in parent and parent[child] > node):
                 parent[child] = node
                 heapq.heappush(frontier, child)
-    return ["failure"], history
+    return ["failure"]
             
     

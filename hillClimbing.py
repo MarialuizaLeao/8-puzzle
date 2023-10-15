@@ -12,10 +12,8 @@ def func(x,y): return manhattanDistance(x)
 
 def hillClimbing(puzzle: eightPuzzle) -> (list, list):
     root = Node(puzzle.grid, func)
-    k = 100
+    k = 5
     current = root
-    history = []
-    i = 0
     while True:
         neighbor = []
         heapq.heapify(neighbor)
@@ -31,5 +29,3 @@ def hillClimbing(puzzle: eightPuzzle) -> (list, list):
             if current.puzzle.solved(): return current.solution
             else: return ["failure"]
         current = bestNeighbor
-        history.append((misplacedTiles(current.puzzle.grid), i))
-        i+=1
